@@ -13,12 +13,9 @@
   margin-left: 5px;
   margin-top: 10px;
 }
-button:active {
-  transform: scale(1.1) rotate(40deg);
-}
+
 button.btn--wrapped {
   transform: rotate(0deg);
-  animation: animBtn 0.3s ease-in-out;
 }
 @keyframes animBtn {
   0%,

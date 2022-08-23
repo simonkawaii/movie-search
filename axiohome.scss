@@ -1,0 +1,57 @@
+::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
+}
+.hamtainer {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  display: flex;
+  cursor: pointer;
+  .hamBtn {
+    position: absolute;
+    content: "";
+    background-color: white;
+    width: 50px;
+    height: 2px;
+    display: flex;
+    &:before {
+      position: absolute;
+      content: "";
+      background-color: white;
+      width: 50px;
+      height: 2px;
+      display: flex;
+      transform: translateY(11px);
+    }
+    &:after {
+      position: absolute;
+      content: "";
+      background-color: white;
+      width: 50px;
+      height: 2px;
+      display: flex;
+      transform: translateY(-11px);
+    }
+    &.opened {
+      &:before {
+        transform: translateY(0);
+      }
+      &:after {
+        transform: translateY(0);
+      }
+    }
+  }
+}
+@for $i from 1 through 20 {
+  .featuredNames div h1:nth-child(#{$i}n) {
+    animation-delay: #{$i * 0.1}s;
+  }
+  .searched .lol:nth-child(#{$i}n) {
+    animation-delay: #{$i * 0.1}s;
+  }
+}

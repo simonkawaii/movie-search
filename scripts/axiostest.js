@@ -72,10 +72,17 @@ const input = async (param) => {
 };
 
 const axiosTest = async (param) => {
-  const config = { params: { q: param } };
-  const res = await axios.get(`https://api.tvmaze.com/search/shows?q=`, config);
+  try {
+    const config = { params: { q: param } };
+    const res = await axios.get(
+      `https://api.tvmaze.com/search/shows?q=`,
+      config
+    );
 
-  await makeImages(res.data);
+    await makeImages(res.data);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const getVideo = async (param) => {

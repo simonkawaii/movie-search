@@ -8,25 +8,8 @@ const switchSidebar = document.querySelector("button");
 const featured = document.createElement("div");
 let touchstartX = 0;
 let touchendX = 0;
+userHasScrolled = false;
 
-function checkDirection() {
-  if (touchendX < touchstartX) {
-    featuredBar.classList.remove("wrapped");
-    switchSidebar.classList.remove("btn--wrapped");
-  }
-  if (touchendX > touchstartX) {
-    featuredBar.classList.add("wrapped");
-    switchSidebar.classList.add("btn--wrapped");
-  }
-}
-document.addEventListener("touchstart", (e) => {
-  touchstartX = e.changedTouches[0].screenX;
-});
-
-document.addEventListener("touchend", (e) => {
-  touchendX = e.changedTouches[0].screenX;
-  checkDirection();
-});
 const changeState = () => {
   featuredBar.classList.toggle("wrapped");
   switchSidebar.classList.toggle("btn--wrapped");
@@ -40,6 +23,32 @@ setTimeout(() => {
     changeState();
   }
 }, 300);
+
+window.onscroll = function (e) {
+  if (window.innerWidth < 876) {
+    userHasScrolled = true;
+    featuredBar.classList.add("wrapped");
+    switchSidebar.classList.add("btn--wrapped");
+  }
+};
+function checkDirection() {
+  if (touchendX < touchstartX && window.innerWidth < 876) {
+    featuredBar.classList.remove("wrapped");
+    switchSidebar.classList.remove("btn--wrapped");
+  }
+  if (touchendX > touchstartX && window.innerWidth < 876) {
+    featuredBar.classList.add("wrapped");
+    switchSidebar.classList.add("btn--wrapped");
+  }
+}
+document.addEventListener("touchstart", (e) => {
+  touchstartX = e.changedTouches[0].screenX;
+});
+
+document.addEventListener("touchend", (e) => {
+  touchendX = e.changedTouches[0].screenX;
+  checkDirection();
+});
 
 const makeImages = async (shows) => {
   let arone = [];

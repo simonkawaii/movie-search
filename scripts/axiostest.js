@@ -11,6 +11,11 @@ switchSidebar.addEventListener("click", () => {
   featuredBar.classList.toggle("wrapped");
   switchSidebar.classList.toggle("btn--wrapped");
 });
+if (window.innerWidth < 876) {
+  featuredBar.classList.toggle("wrapped");
+  switchSidebar.classList.toggle("btn--wrapped");
+}
+
 const makeImages = async (shows) => {
   let arone = [];
   const featuredContainer = document.querySelector(".featuredNames");

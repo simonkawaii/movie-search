@@ -6,15 +6,38 @@ const featuredNames = document.querySelector(".featuredNames");
 const featuredBar = document.querySelector(".featured");
 const switchSidebar = document.querySelector("button");
 const featured = document.createElement("div");
+let touchstartX = 0;
+let touchendX = 0;
 
-switchSidebar.addEventListener("click", () => {
+function checkDirection() {
+  if (touchendX < touchstartX) {
+    featuredBar.classList.remove("wrapped");
+    switchSidebar.classList.remove("btn--wrapped");
+  }
+  if (touchendX > touchstartX) {
+    featuredBar.classList.add("wrapped");
+    switchSidebar.classList.add("btn--wrapped");
+  }
+}
+document.addEventListener("touchstart", (e) => {
+  touchstartX = e.changedTouches[0].screenX;
+});
+
+document.addEventListener("touchend", (e) => {
+  touchendX = e.changedTouches[0].screenX;
+  checkDirection();
+});
+const changeState = () => {
   featuredBar.classList.toggle("wrapped");
   switchSidebar.classList.toggle("btn--wrapped");
+};
+
+switchSidebar.addEventListener("click", () => {
+  changeState();
 });
 setTimeout(() => {
   if (window.innerWidth < 876) {
-    featuredBar.classList.toggle("wrapped");
-    switchSidebar.classList.toggle("btn--wrapped");
+    changeState();
   }
 }, 300);
 
